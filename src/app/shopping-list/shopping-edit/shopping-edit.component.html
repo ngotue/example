@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubmit(shoppingForm)" #shoppingForm="ngForm">
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            #nameInput="ngModel"
+            ngModel
+            required
+          />
+        </div>
+        <div class="col-sm-2 form-group">
+          <label for="amount">Amount</label>
+          <input
+            type="number"
+            id="amount"
+            name="amount"
+            class="form-control"
+            #amountInput="ngModel"
+            ngModel
+            required
+            pattern="^[+]?\d+([.]\d+)?$"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            class="btn btn-success"
+            type="submit"
+            [disabled]="!shoppingForm.valid"
+          >
+            {{selectedItem ? 'Edit' : "Add"}}
+          </button>
+          <button class="btn btn-danger" type="button" (click)="onDelete()" *ngIf="selectedItem">Delete</button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onClear()"
+            [disabled]="!shoppingForm.value.name || !shoppingForm.value.amount"
+          >
+            Clear
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
